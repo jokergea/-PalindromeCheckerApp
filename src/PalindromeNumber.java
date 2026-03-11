@@ -1,3 +1,5 @@
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class PalindromeNumber {
@@ -5,29 +7,38 @@ public class PalindromeNumber {
     public static void main(String[] args) {
 
         // Original string
-        String word = "madam";
+        String word = "level";
 
-        // Create stack
+        // Create Queue and Stack
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
-        // Push characters into stack
+        // Enqueue and Push characters
         for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
+            char ch = word.charAt(i);
+            queue.add(ch);     // Enqueue
+            stack.push(ch);    // Push
         }
 
-        // Build reversed string by popping from stack
-        String reversed = "";
+        boolean isPalindrome = true;
 
-        while (!stack.isEmpty()) {
-            reversed = reversed + stack.pop();
+        // Compare dequeue and pop
+        while (!queue.isEmpty()) {
+
+            char fromQueue = queue.remove(); // Dequeue (FIFO)
+            char fromStack = stack.pop();    // Pop (LIFO)
+
+            if (fromQueue != fromStack) {
+                isPalindrome = false;
+                break;
+            }
         }
 
-        // Compare original and reversed string
-        if (word.equals(reversed)) {
+        // Display result
+        if (isPalindrome) {
             System.out.println(word + " is a Palindrome");
         } else {
             System.out.println(word + " is not a Palindrome");
         }
-
     }
 }
