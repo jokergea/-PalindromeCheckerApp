@@ -1,34 +1,30 @@
-import java.util.Queue;
+import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
 public class PalindromeNumber {
 
     public static void main(String[] args) {
 
         // Original string
-        String word = "level";
+        String word = "rotor";
 
-        // Create Queue and Stack
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        // Create deque
+        Deque<Character> deque = new LinkedList<>();
 
-        // Enqueue and Push characters
+        // Insert characters into deque
         for (int i = 0; i < word.length(); i++) {
-            char ch = word.charAt(i);
-            queue.add(ch);     // Enqueue
-            stack.push(ch);    // Push
+            deque.addLast(word.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue and pop
-        while (!queue.isEmpty()) {
+        // Compare front and rear elements
+        while (deque.size() > 1) {
 
-            char fromQueue = queue.remove(); // Dequeue (FIFO)
-            char fromStack = stack.pop();    // Pop (LIFO)
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-            if (fromQueue != fromStack) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
@@ -40,5 +36,6 @@ public class PalindromeNumber {
         } else {
             System.out.println(word + " is not a Palindrome");
         }
+
     }
 }
