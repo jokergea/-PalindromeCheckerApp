@@ -1,30 +1,34 @@
 public class PalindromeNumber {
 
-    // Recursive method to check palindrome
-    public static boolean isPalindrome(String word, int start, int end) {
+    // Method to check palindrome ignoring spaces and case
+    public static boolean isPalindrome(String word) {
 
-        // Base condition: if start >= end, all characters matched
-        if (start >= end) {
-            return true;
+        // Normalize: remove non-alphanumeric characters and convert to lowercase
+        String normalized = word.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        int start = 0;
+        int end = normalized.length() - 1;
+
+        // Two-pointer comparison
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
         }
 
-        // If characters at start and end are not equal
-        if (word.charAt(start) != word.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call for next inner characters
-        return isPalindrome(word, start + 1, end - 1);
+        return true;
     }
 
     public static void main(String[] args) {
 
-        String word = "deified";
+        String word = "A man, a plan, a canal: Panama";
 
-        if (isPalindrome(word, 0, word.length() - 1)) {
-            System.out.println(word + " is a Palindrome");
+        if (isPalindrome(word)) {
+            System.out.println("\"" + word + "\" is a Palindrome (ignoring spaces and case)");
         } else {
-            System.out.println(word + " is not a Palindrome");
+            System.out.println("\"" + word + "\" is NOT a Palindrome (ignoring spaces and case)");
         }
     }
 }
