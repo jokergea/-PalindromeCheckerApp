@@ -1,43 +1,17 @@
-public class PalindromeNumber {
+public class PalindromeNumber
+{
 
     public static void main(String[] args) {
+        // Hardcoded string to check
+        String word = "madam";
 
-        // Create PalindromeChecker object
-        PalindromeChecker checker = new PalindromeChecker();
+        // Check if the word is a palindrome by comparing it with its reverse
+        String reversed = new StringBuilder(word).reverse().toString();
 
-        // Test string
-        String word = "civic";
-
-        // Check palindrome
-        if (checker.checkPalindrome(word)) {
+        if (word.equals(reversed)) {
             System.out.println(word + " is a Palindrome");
         } else {
             System.out.println(word + " is not a Palindrome");
         }
-    }
-}
-
-// PalindromeChecker class encapsulates palindrome logic
-class PalindromeChecker {
-
-    // Method to check palindrome using two-pointer technique
-    public boolean checkPalindrome(String word) {
-
-        if (word == null || word.isEmpty()) {
-            return false;
-        }
-
-        int start = 0;
-        int end = word.length() - 1;
-
-        while (start < end) {
-            if (word.charAt(start) != word.charAt(end)) {
-                return false;
-            }
-            start++;
-            end--;
-        }
-
-        return true;
     }
 }
