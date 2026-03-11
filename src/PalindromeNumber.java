@@ -2,18 +2,18 @@ public class PalindromeNumber {
 
     public static void main(String[] args) {
 
-        // Hardcoded string
-        String word = "madam";
+        // Original string
+        String word = "level";
 
         // Variable to store reversed string
         String reversed = "";
 
-        // Reverse the string using loop
+        // Reverse the string using for loop
         for (int i = word.length() - 1; i >= 0; i--) {
             reversed = reversed + word.charAt(i);
         }
 
-        // Check if the string is palindrome
+        // Compare original and reversed string
         if (word.equals(reversed)) {
             System.out.println(word + " is a Palindrome");
         } else {
