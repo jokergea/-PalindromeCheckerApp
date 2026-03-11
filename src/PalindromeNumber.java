@@ -1,17 +1,37 @@
 public class PalindromeNumber {
 
-    // Method to check palindrome ignoring spaces and case
-    public static boolean isPalindrome(String word) {
+    public static void main(String[] args) {
 
-        // Normalize: remove non-alphanumeric characters and convert to lowercase
-        String normalized = word.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        // Create PalindromeChecker object
+        PalindromeChecker checker = new PalindromeChecker();
+
+        // Test string
+        String word = "civic";
+
+        // Check palindrome
+        if (checker.checkPalindrome(word)) {
+            System.out.println(word + " is a Palindrome");
+        } else {
+            System.out.println(word + " is not a Palindrome");
+        }
+    }
+}
+
+// PalindromeChecker class encapsulates palindrome logic
+class PalindromeChecker {
+
+    // Method to check palindrome using two-pointer technique
+    public boolean checkPalindrome(String word) {
+
+        if (word == null || word.isEmpty()) {
+            return false;
+        }
 
         int start = 0;
-        int end = normalized.length() - 1;
+        int end = word.length() - 1;
 
-        // Two-pointer comparison
         while (start < end) {
-            if (normalized.charAt(start) != normalized.charAt(end)) {
+            if (word.charAt(start) != word.charAt(end)) {
                 return false;
             }
             start++;
@@ -19,16 +39,5 @@ public class PalindromeNumber {
         }
 
         return true;
-    }
-
-    public static void main(String[] args) {
-
-        String word = "A man, a plan, a canal: Panama";
-
-        if (isPalindrome(word)) {
-            System.out.println("\"" + word + "\" is a Palindrome (ignoring spaces and case)");
-        } else {
-            System.out.println("\"" + word + "\" is NOT a Palindrome (ignoring spaces and case)");
-        }
     }
 }
