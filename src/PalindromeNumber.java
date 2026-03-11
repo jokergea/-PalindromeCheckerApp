@@ -1,32 +1,43 @@
-import java.util.Scanner;
-
 public class PalindromeNumber {
 
     public static void main(String[] args) {
 
-        int number, originalNumber, remainder, reversedNumber = 0;
+        // Create PalindromeChecker object
+        PalindromeChecker checker = new PalindromeChecker();
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter a number: ");
-        number = scanner.nextInt();
-
-        originalNumber = number;
-
-        // Reverse the number
-        while (number != 0) {
-            remainder = number % 10;
-            reversedNumber = reversedNumber * 10 + remainder;
-            number = number / 10;
-        }
+        // Test string
+        String word = "civic";
 
         // Check palindrome
-        if (originalNumber == reversedNumber) {
-            System.out.println("The number is a Palindrome.");
+        if (checker.checkPalindrome(word)) {
+            System.out.println(word + " is a Palindrome");
         } else {
-            System.out.println("The number is NOT a Palindrome.");
+            System.out.println(word + " is not a Palindrome");
+        }
+    }
+}
+
+// PalindromeChecker class encapsulates palindrome logic
+class PalindromeChecker {
+
+    // Method to check palindrome using two-pointer technique
+    public boolean checkPalindrome(String word) {
+
+        if (word == null || word.isEmpty()) {
+            return false;
         }
 
-        scanner.close();
+        int start = 0;
+        int end = word.length() - 1;
+
+        while (start < end) {
+            if (word.charAt(start) != word.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
     }
 }
